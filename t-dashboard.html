@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | V2N NIP Transaction Portal</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon-nip.ico" />
+
+    <!-- Google Fonts CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Latest compiled and minified CSS (Bootstrap) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    />
+
+    <!-- Data tables Main CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"
+    />
+    <!-- Datatables Download button CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css"
+    />
+
+    <!-- DatePickr CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container dashboardPage">
+      <div class="box">
+        <div class="row">
+          <div class="col-6 leftstuff">
+            <img src="images/logo.png" alt="Logo Image" />
+          </div>
+          <div class="col-6 rightstuff">
+            <button class="button logoutbtn" onClick="handleLogout()">
+              Log Out
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 leftstuff">
+            <h2>Transaction History</h2>
+          </div>
+          <div class="col-6 rightstuff">
+            <button class="button logbtn" onclick="location.href='log.html'">
+              View Logs
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="datepicker" style="margin-left: 1rem">
+            <div>
+              <input
+                type="text"
+                id="startDate"
+                placeholder="Start Date"
+                class="startDate searchInput"
+              />
+            </div>
+          </div>
+          <div class="datepicker">
+            <div>
+              <input
+                type="text"
+                id="endDate"
+                placeholder="End Date"
+                class="endDate searchInput"
+              />
+            </div>
+          </div>
+
+          <div>
+            <input
+              type="text"
+              id="transRef"
+              placeholder="Ref No."
+              class="searchInput"
+            />
+          </div>
+          <div>
+            <button id="clearButton" class="button logbtn searchInput">
+              Clear Input
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="box" style="padding-top: 2rem">
+        <table id="transactions" class="display" style="width: 100%">
+          <thead>
+            <tr>
+              <th style="text-align: center"></th>
+              <th style="text-align: center">Receiver</th>
+              <th style="text-align: center">Receiver's Acc. No.</th>
+              <th style="text-align: center">Bank Code</th>
+              <th style="text-align: center">Amount</th>
+              <th style="text-align: center">Ref No.</th>
+              <th style="text-align: center">Date & Time</th>
+              <th style="text-align: center">Status</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th style="text-align: center"></th>
+              <th style="text-align: center">Receiver</th>
+              <th style="text-align: center">Receiver's Acc. No.</th>
+              <th style="text-align: center">Bank Code</th>
+              <th style="text-align: center">Amount</th>
+              <th style="text-align: center">Ref No.</th>
+              <th style="text-align: center">Date & Time</th>
+              <th style="text-align: center">Status</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="bankDetailsModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="bankDetailsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bankDetailsModalLabel">Bank Details</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="bankDetails">
+            <p class="bankDetail" id="bankName"></p>
+            <p class="bankDetail" id="institutionCode"></p>
+            <p class="bankDetail" id="category"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn close-button btn-light"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer id="footer" class="footer">
+      <div class="copyright">
+        &copy; <strong><span>VAS2Nets Technologies</span></strong
+        >.
+      </div>
+    </footer>
+
+    <!-- Bootstrap -->
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Data Tables -->
+    <!-- Main jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Sub -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <!-- Datatables Download button jQuery -->
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+
+    <!-- DatePickr JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- Moment Date Formatter -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="dashboard.js"></script>
+    <script>
+      const handleLogout = () => {
+        sessionStorage.setItem("AuthenticationState", null); //set authentication information in sessio storage to null
+        window.location.replace("./index.html"); //redirect to dashboard
+      };
+    </script>
+  </body>
+</html>

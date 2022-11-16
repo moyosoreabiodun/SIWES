@@ -1,0 +1,131 @@
+body{
+    text-align: center;
+    font-family: "Arvo", serif;
+}
+
+
+/* Log In Page */
+.loginPage{
+    margin-left: 0;
+}
+.logoImage{
+    margin: 4rem 0 4.5rem;
+}
+.loginTitle{
+    color: #647E68;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    font-weight: bold;
+}
+.logininput{
+    margin: 1rem auto;
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    border-radius: 0.8rem;
+    background-color: #fff;
+    height: 3rem;
+    padding: 0.5rem;
+}
+.loginbtn{
+    text-align: center;
+    margin: 2rem auto;
+    font-size: 1.5rem;
+    display: block;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid #647E68;
+    border-radius: 0.8rem;
+    background-color: #647E68;
+    color: #fff;
+    cursor: pointer;
+}
+.loginImage{
+    background-image: url('images/moneyVector1.jpg');
+    background-size: cover;
+    height: 100vh;
+}
+
+
+/* Dashboard & Log Pages */
+thead, tfoot{
+    background-color: #647e68; 
+    color: #fff; 
+    opacity: 0.9;
+}
+.dashboardPage, .logPage{
+    padding-bottom: 5rem;
+}
+.box{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 1rem;
+}
+.leftstuff{
+    text-align: left;
+    margin: 2rem 0 0.5rem;
+}
+.rightstuff{
+    text-align: right;
+    margin: 2rem 0 0;
+}
+.searchInput{
+    margin: 1.5rem 1rem 1.5rem 0;
+    border-radius: 0.9rem;
+    height: 3rem;
+    width: 9rem;
+    padding: 0.5rem;
+    text-align: center;
+}
+.button{
+    border-radius: 0.9rem;
+    border: 1px solid #647E68;
+    background-color: #647E68;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.5rem;
+    height: 3rem;
+}
+.button:hover{
+    box-shadow: 3px 3px 5px rgba(100, 100, 111, 0.2);
+    transition: 0.5s ease-in-out;
+}
+.logoutbtn, #clearButton{
+    background-color: #F96666;
+}
+.bankbutton{
+    background-color: rgba(100, 100, 111, 0.1);
+}
+.bankbutton:hover{
+    background-color: rgba(100, 100, 111, 0.4);
+}
+.bankDetail{
+    color: #000;
+    font-size: 1rem;
+}
+.modal-title, .close-button {
+    font-weight: bold;
+}
+.footer {
+    padding: 0.5rem 0 2rem;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+.footer .copyright {
+    text-align: center;
+    color: #647E68;
+}
+
+/* Modifications to DataTables InBuilt Style */
+#transactions_length label{
+    color: transparent;
+    margin-left: -2rem;
+    position: relative;
+}
+#transactions_length select{
+    height: 2.5rem;
+}
+#transactions_filter, #transactions_length, #logs_length, #logs_filter{
+    margin-bottom: 1rem;
+}
+.dataTables_paginate, .dataTables_info{
+    margin-top: 2rem;
+}
